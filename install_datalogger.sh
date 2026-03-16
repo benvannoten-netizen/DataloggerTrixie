@@ -197,7 +197,24 @@ if stel_vraag "Stap 6: Cronjobs instellen in jouw persoonlijke crontab?"; then
     echo "1,16,31,46 * * * * ~/pythonscripts/dhtvenv/bin/python ~/pythonscripts/BewaarTempGrafiek.py" >> temp_cron
     echo "" >> temp_cron
     echo "# Elke 15 minuten de afbeelding kopiëren naar webroot" >> temp_cron
-    echo "2,17,32,47 * * * * sudo cp ~/Raspi25Temperatuur.png /var/www/html/afbeeldingen/Raspi25Temperatuur.png" >> temp_cron
+    echo "1,16,31,46 * * * * sudo cp ~/Raspi25Temperatuur.png /var/www/html/afbeeldingen/Raspi25Temperatuur.png" >> temp_cron
+
+
+    echo "" >> temp_cron
+    echo "# Afbeelding van de dagtemperatuur en vochtigheid verversen" >> temp_cron
+    echo "2,17,32,47 * * * * /pythonscripts/dhtvenv/bin/python ~/pythonscripts/MatplotLibDagTempVocht.py" >> temp_cron
+    echo "" >> temp_cron
+    echo "# Afbeelding van de weektemperatuur en vochtigheid verversen" >> temp_cron
+    echo "2,17,32,47 * * * * /pythonscripts/dhtvenv/bin/python ~/pythonscripts/MatplotLibWeekTempVocht.py" >> temp_cron
+    echo "" >> temp_cron
+    echo "# Afbeelding van de maandtemperatuur en vochtigheidverversen" >> temp_cron
+    echo "2,17,32,47 * * * * /pythonscripts/dhtvenv/bin/python ~/pythonscripts/MatplotLibMaandTempVocht.py" >> temp_cron
+    echo "" >> temp_cron
+    echo "# Afbeelding van de all time temperatuur en vochtigheid verversen" >> temp_cron
+    echo "3,18,33,48 * * * * /pythonscripts/dhtvenv/bin/python ~/pythonscripts/MatplotLibAllTimeTempVocht.py" >> temp_cron
+
+
+
 
     # 3. Het tijdelijke bestand inladen als de nieuwe crontab
     crontab temp_cron
