@@ -79,6 +79,7 @@ if stel_vraag "Stap 1: Bestanden organiseren naar de nieuwe mappenstructuur?"; t
     echo "Bestanden zijn verplaatst naar $HOME."
 fi
 
+: '
 # -----------------------------------------------------------------
 # STAP 2: Systeem Update & Software
 # -----------------------------------------------------------------
@@ -95,7 +96,7 @@ if stel_vraag "Stap 2: Systeem updaten en software (Apache, PHP, MariaDB) instal
                          python3-venv python3-pip libopenblas-dev \
                          python3-dev pkg-config
 fi
-
+'
 # -----------------------------------------------------------------
 # STAP 3: Database Configuratie
 # -----------------------------------------------------------------
