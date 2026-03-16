@@ -188,6 +188,14 @@ if stel_vraag "Stap 6: Cronjobs instellen in jouw persoonlijke crontab?"; then
     # Zo voorkomen we dubbele regels als het script vaker wordt gedraaid.
     crontab -l 2>/dev/null | grep -v "pythonscripts" | grep -v "Raspi25Temperatuur.png" > temp_cron || true
 
+    # Grafiekscripts eenmalig uitvoeren zodat er direct afbeeldingen zijn
+    echo "Grafieken aanmaken voor de eerste keer..."
+    "$PYTHON_DEST/dhtvenv/bin/python" "$PYTHON_DEST/MatplotLibDagTempVocht.py"
+    "$PYTHON_DEST/dhtvenv/bin/python" "$PYTHON_DEST/MatplotLibWeekTempVocht.py"
+    "$PYTHON_DEST/dhtvenv/bin/python" "$PYTHON_DEST/MatplotLibMaandTempVocht.py"
+    "$PYTHON_DEST/dhtvenv/bin/python" "$PYTHON_DEST/MatplotLibAllTimeTempVocht.py"
+    echo "Grafieken aangemaakt."
+
     # 2. De nieuwe regels toevoegen aan het tijdelijke bestand
     echo "" >> temp_cron
     echo "# Elke 15 minuten de sensor uitlezen" >> temp_cron
