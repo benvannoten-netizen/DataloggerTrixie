@@ -87,14 +87,14 @@ if stel_vraag "Stap 2: Systeem updaten en software (Apache, PHP, MariaDB) instal
     print_titel "STAP 2: SYSTEEM & SOFTWARE UPDATE"
     echo "Dit kan even duren (geen interactie vereist)..."
 
-    #sudo apt-get update -y
+    sudo apt-get update -y
 
-    # Directe aanroep van opties om dpkg errors te voorkomen
-    #sudo apt-get upgrade -y -o Dpkg::Options::="--force-confdef" -o Dpkg::Options::="--force-confold"
+     #Directe aanroep van opties om dpkg errors te voorkomen
+    sudo apt-get upgrade -y -o Dpkg::Options::="--force-confdef" -o Dpkg::Options::="--force-confold"
 
-    #sudo apt-get install -y apache2 php php-mysql mariadb-server \
-                         #python3-venv python3-pip libopenblas-dev \
-                         #python3-dev pkg-config
+    sudo apt-get install -y apache2 php php-mysql mariadb-server \
+                         python3-venv python3-pip libopenblas-dev \
+                         python3-dev pkg-config
 fi
 # -----------------------------------------------------------------
 # STAP 3: Database Configuratie
