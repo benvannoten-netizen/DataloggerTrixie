@@ -171,8 +171,13 @@ if stel_vraag "Stap 5: Jouw web-ontwerp naar de webroot (/var/www/html) kopiëre
     fi
 
     # Rechten goedzetten zodat de webserver alles kan lezen en schrijven
-    sudo chown -R www-data:www-data /var/www/html/
-    sudo chmod -R 775 /var/www/html/
+    # Rechten goedzetten zodat webserver + jouw scripts werken
+   sudo chown -R www-data:www-data /var/www/html/
+   sudo chmod -R 775 /var/www/html/
+
+   #BELANGRIJK: directe rechten voor jouw user (zonder reboot nodig)
+   sudo setfacl -R -m u:$USER:rwx /var/www/html
+   sudo setfacl -d -m u:$USER:rwx /var/www/html
 
     echo "Webserver is ingericht en de oude index.html is opgeruimd."
 fi
@@ -210,16 +215,16 @@ if stel_vraag "Stap 6: Cronjobs instellen in jouw persoonlijke crontab?"; then
 
     echo "" >> temp_cron
     echo "# Afbeelding van de dagtemperatuur en vochtigheid verversen" >> temp_cron
-    echo "2,17,32,47 * * * * /pythonscripts/dhtvenv/bin/python ~/pythonscripts/MatplotLibDagTempVocht.py" >> temp_cron
+    echo "2,17,32,47 * * * * ~/pythonscripts/dhtvenv/bin/python ~/pythonscripts/MatplotLibDagTempVocht.py" >> temp_cron
     echo "" >> temp_cron
     echo "# Afbeelding van de weektemperatuur en vochtigheid verversen" >> temp_cron
-    echo "2,17,32,47 * * * * /pythonscripts/dhtvenv/bin/python ~/pythonscripts/MatplotLibWeekTempVocht.py" >> temp_cron
+    echo "2,17,32,47 * * * * ~/pythonscripts/dhtvenv/bin/python ~/pythonscripts/MatplotLibWeekTempVocht.py" >> temp_cron
     echo "" >> temp_cron
     echo "# Afbeelding van de maandtemperatuur en vochtigheidverversen" >> temp_cron
-    echo "2,17,32,47 * * * * /pythonscripts/dhtvenv/bin/python ~/pythonscripts/MatplotLibMaandTempVocht.py" >> temp_cron
+    echo "2,17,32,47 * * * * ~/pythonscripts/dhtvenv/bin/python ~/pythonscripts/MatplotLibMaandTempVocht.py" >> temp_cron
     echo "" >> temp_cron
     echo "# Afbeelding van de all time temperatuur en vochtigheid verversen" >> temp_cron
-    echo "3,18,33,48 * * * * /pythonscripts/dhtvenv/bin/python ~/pythonscripts/MatplotLibAllTimeTempVocht.py" >> temp_cron
+    echo "3,18,33,48 * * * * ~/pythonscripts/dhtvenv/bin/python ~/pythonscripts/MatplotLibAllTimeTempVocht.py" >> temp_cron
 
 
 
