@@ -144,7 +144,7 @@ if stel_vraag "Wil je nu data importeren van een andere (Bookworm) Raspberry Pi?
     echo "   scp ~/temperaturesdump_*.sql $USER@$IP_TRIXIE:~/"
     echo "-------------------------------------------------------------"
     echo "VOER DIT UIT OP DEZE PI (TRIXIE) NA DE OVERDRACHT:"
-    echo "   mariadb -u root -p temperatures < ~/temperaturesdump_*.sql"
+    sudo mariadb -u root -p temperatures < ~/temperaturesdump_*.sql
     echo "-------------------------------------------------------------"
 
     read -p "Druk op [Enter] zodra je klaar bent om verder te gaan..."
