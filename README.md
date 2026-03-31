@@ -178,6 +178,7 @@ mariadb -u logger -p -e "TRUNCATE TABLE temperatures.temperaturedata;"
 ```
 
 # Automatisering (Cron)
+eerst door alle pythonscripts gaan om afbeeldingen  te maken
 De datalogger werkt volledig automatisch via een cron-configuratie in /etc/cron.d/datalogger.
 
 * Logging: Elke 15 minuten (0, 15, 30, 45) wordt de sensor uitgelezen en de data opgeslagen.
